@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(to right, #add8e6, #ffb6c1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+    }
+
+    .birthday-text {
+      font-size: 4em;
+      color: #ff69b4;
+      text-shadow: 0 0 10px #ff69b4;
+      animation: glow 2s ease-in-out infinite alternate;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      font-size: 1.5em;
+      color: #fff;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 2s forwards 1s;
+    }
+
+    .balloon {
+      position: absolute;
+      width: 30px;
+      height: 40px;
+      border-radius: 50%;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .balloon:before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 15px;
+      width: 2px;
+      height: 20px;
+      background: #fff;
+    }
+
+    .balloon:nth-child(1) {
+      background: #ff69b4;
+      left: -50px;
+      top: -30px;
+      animation-delay: 0.5s;
+    }
+
+    .balloon:nth-child(2) {
+      background: #87ceeb;
+      right: -50px;
+      top: -20px;
+      animation-delay: 1s;
+    }
+
+    .balloon:nth-child(3) {
+      background: #98fb98;
+      left: -80px;
+      top: 20px;
+      animation-delay: 1.5s;
+    }
+
+    .qr-container {
+      margin-top: 30px;
+      padding: 15px;
+      background: white;
+      border-radius: 10px;
+      display: inline-block;
+      animation: fadeIn 2s forwards 2s;
+      opacity: 0;
+    }
+
+    .qr-text {
+      color: white;
+      font-size: 1.2em;
+      margin-top: 10px;
+      animation: fadeIn 2s forwards 2.5s;
+      opacity: 0;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #ff69b4;
+      }
+      to {
+        text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4;
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: white;
+      animation: sparkle 1.5s linear infinite;
+    }
+
+    @keyframes sparkle {
+      0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1) rotate(180deg);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <h1 class="birthday-text">Happy Birthday! 🎉</h1>
+    <p class="message">Wishing you a wonderful day filled with joy and happiness!</p>
+    <div class="qr-container" id="qrcode"></div>
+    <p class="qr-text">Scan to drop your wishes! 🎁</p>
+  </div>
+
+  <script>
+    // Create sparkles
+    function createSparkles() {
+      const container = document.querySelector('.container');
+      for (let i = 0; i < 20; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = Math.random() * 100 + '%';
+        sparkle.style.top = Math.random() * 100 + '%';
+        sparkle.style.animationDelay = Math.random() * 1.5 + 's';
+        container.appendChild(sparkle);
+      }
+    }
+    
+    // Generate QR Code
+    window.onload = function() {
+      new QRCode(document.getElementById("qrcode"), {
+        text: "https://glittering-piroshki-50dce6.netlify.app/",  // Updated to link directly to the wishes page
+        width: 128,
+        height: 128,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+      });
+      createSparkles();
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="landing.css">
+    <title>Birthday Wishes</title>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 HAPPY BIRTHDAY UNA 🎉</h1>
+        <h1>Let's celebrating this special day</h1>
+
+        <div class="wish-form">
+            <h2>DROP YOUR WISHES HERE!</h2>
+            <input type="text" id="nameInput" placeholder="Your Name">
+            <textarea id="messageInput" rows="4" placeholder="Write your birthday wish for una"></textarea>
+            <button onclick="addWish()">Send Wish</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize wishes array in localStorage if it doesn't exist
+        if (!localStorage.getItem('birthdayWishes')) {
+            localStorage.setItem('birthdayWishes', JSON.stringify([]));
+        }
+
+        function addWish() {
+            const nameInput = document.getElementById('nameInput');
+            const messageInput = document.getElementById('messageInput');
+            
+            if (!nameInput.value || !messageInput.value) {
+                alert('Please fill in both name and message!');
+                return;
+            }
+
+            const wish = {
+                name: nameInput.value,
+                message: messageInput.value,
+                timestamp: new Date().toISOString()
+            };
+
+            const wishes = JSON.parse(localStorage.getItem('birthdayWishes'));
+            wishes.unshift(wish);
+            localStorage.setItem('birthdayWishes', JSON.stringify(wishes));
+
+            // Clear inputs and show success message
+            nameInput.value = '';
+            messageInput.value = '';
+            alert('Thank you! Your wish has been sent successfully! 🎉');
+        }
+    </script>
+</body>
+</html>

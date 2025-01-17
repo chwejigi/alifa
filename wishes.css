@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #ffb6c1, #add8e6);
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero-section h1 {
+    font-size: 3em;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+    font-size: 1.2em;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+.wave-divider {
+    height: 150px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: center;
+    margin-top: -100px;
+}
+
+.content-container {
+    max-width: 1200px;
+    margin: -50px auto 50px;
+    padding: 0 20px;
+}
+
+.wishes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.wish-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.wish-card:hover {
+    transform: translateY(-5px);
+}
+
+.wish-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.wish-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #ffb6c1, #add8e6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.wish-info {
+    flex-grow: 1;
+}
+
+.wish-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.wish-timestamp {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 2px;
+}
+
+.wish-message {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #555;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2em;
+    }
+    
+    .wishes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .wave-divider {
+        height: 100px;
+    }
+}

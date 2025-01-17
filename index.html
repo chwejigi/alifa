@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wishes</title>
+    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="wishes.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff69b4;
+            text-shadow: 0 0 10px #ff69b4;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .wish-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            animation: slideIn 0.5s ease-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .wish-name {
+            color: #ff69b4;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .wish-message {
+            color: rgb(0, 0, 0);
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .wish-timestamp {
+            font-size: 0.8em;
+            color: #ccc;
+        }
+
+        /* Link Styles */
+        .link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #ff69b4;
+            font-size: 1.2em;
+            text-decoration: none;
+            text-shadow: 0 0 10px #ff69b4;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Birthday Wishes 🎉</h1>
+        
+        <!-- Updated Link to the provided URL -->
+        <a href="https://glittering-piroshki-50dce6.netlify.app/" class="link">Add Your Wish</a>
+
+        <div id="wishesContainer">
+            <!-- Wishes will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        function displayWishes() {
+            const wishes = JSON.parse(localStorage.getItem('birthdayWishes') || '[]');
+            const container = document.getElementById('wishesContainer');
+            container.innerHTML = '';
+
+            if (wishes && wishes.length > 0) {
+                wishes.forEach((wish, index) => {
+                    const wishElement = document.createElement('div');
+                    wishElement.className = 'wish-card';
+                    wishElement.style.animationDelay = `${index * 0.1}s`;
+                    wishElement.innerHTML = `
+                        <div class="wish-name">${wish.name}</div>
+                        <div class="wish-message">${wish.message}</div>
+                        <div class="wish-timestamp">${new Date(wish.timestamp).toLocaleString()}</div>
+                    `;
+                    container.appendChild(wishElement);
+                });
+            } else {
+                container.innerHTML = '<div class="wish-card">No wishes yet. Be the first to wish!</div>';
+            }
+        }
+
+        // Display wishes when page loads
+        window.onload = displayWishes;
+
+        // Refresh wishes every 30 seconds to check for new ones
+        setInterval(displayWishes, 30000);
+    </script>
+</body>
+</html>
